@@ -68,11 +68,11 @@ task GetVersionToBuild {
         $Date = Get-Date -Format 'yyyyMMdd'
 
         if ($Script:PSGalleryModuleInfo.Version -eq "0.0") {
-            $Script:VersionToBuild = $Script:VersionToBuild = [System.Version]::New(1, 0, $Date, 0)
+            $Script:VersionToBuild = $Script:VersionToBuild = [System.Version]::New(1, $Date, 0)
         }
         elseif ($Script:PSGalleryModuleInfo.Version -eq $Script:ModuleManifest.Version) {
             $CurrentVersion        = [System.Version]$Script:PSGalleryModuleInfo.Version
-            $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $CurrentVersion.Minor + 1, $Date, 0)
+            $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $Date, $CurrentVersion.Build+1)
         }
         elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest) {
             throw "Can not build with unmatching module version numbers in the PowerShell Gallery and module manifest"
@@ -84,7 +84,7 @@ task GetVersionToBuild {
         }
     
         # Suss out unlisted packages
-        for ($i = $Script:VersionToBuild.Revision; $i -le 100; $i++) {
+        for ($i = $Script:VersionToBuild.Build; $i -le 100; $i++) {
             if ($i -eq 100) {
                 throw "You have 100 unlisted packages under the same build number? Sort your life out."
             }
@@ -92,7 +92,7 @@ task GetVersionToBuild {
             try {
                 $Script:PSGalleryModuleInfo = Find-Module -Name $Script:ModuleName -RequiredVersion $Script:VersionToBuild
                 if ($Script:PSGalleryModuleInfo) {
-                    $Script:VersionToBuild = [System.Version]::New($Script:VersionToBuild.Major, $Script:VersionToBuild.Minor, $Script:VersionToBuild.Build, $i)
+                    $Script:VersionToBuild = [System.Version]::New($Script:VersionToBuild.Major, $Script:VersionToBuild.Minor, $i)
                 }
                 else {
                     throw "Unusual no object or exception caught from Find-Module"
@@ -112,7 +112,7 @@ task GetVersionToBuild {
     else {
         if ($Script:PSGalleryModuleInfo.Version -eq "0.0" -Or $Script:PSGalleryModuleInfo.Version -eq $Script:ModuleManifest.ModuleVersion) {
             $CurrentVersion        = [System.Version]$Script:ModuleManifest.Version
-            $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $CurrentVersion.Minor, $CurrentVersion.Build, $CurrentVersion.Revision + 1)
+            $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $CurrentVersion.Minor, $CurrentVersion.Build + 1)
         }
         else {
             Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.Version)

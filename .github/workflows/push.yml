@@ -55,7 +55,6 @@ jobs:
         with:
           tag_name: ${{ env.VersionToBuild }}
           release_name: Release ${{ env.VersionToBuild }}
-          body_path: release/releasenotes.txt
           draft: false
           prelease: false
 

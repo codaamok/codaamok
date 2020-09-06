@@ -1,0 +1,95 @@
+---
+external help file: codaamok-help.xml
+Module Name: codaamok
+online version:
+schema: 2.0.0
+---
+
+# Get-Syntax
+
+## SYNOPSIS
+Get the syntax for a command.
+
+## SYNTAX
+
+### ByName
+```
+Get-Syntax [-Name] <String> [-Short] [<CommonParameters>]
+```
+
+### FromCommandInfo
+```
+Get-Syntax -CommandInfo <CommandInfo> [-Short] [<CommonParameters>]
+```
+
+## DESCRIPTION
+Get the syntax for a command.
+A wrapper for Get-Command -Syntax.
+
+## EXAMPLES
+
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
+```
+
+{{ Add example description here }}
+
+## PARAMETERS
+
+### -Name
+The name of a command.
+
+```yaml
+Type: String
+Parameter Sets: ByName
+Aliases:
+
+Required: True
+Position: 2
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -CommandInfo
+A CommandInfo object.
+
+```yaml
+Type: CommandInfo
+Parameter Sets: FromCommandInfo
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Short
+Write syntax in the short format used by Get-Command.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### CommonParameters
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
+
+## INPUTS
+
+## OUTPUTS
+
+## NOTES
+https://github.com/indented-automation/Indented.Profile/blob/master/Indented.Profile/public/Get-Syntax.ps1
+
+## RELATED LINKS

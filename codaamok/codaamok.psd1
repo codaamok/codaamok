@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'codaamok.psd1'
+RootModule = 'codaamok.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0'
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @("codaamok", "profile")
+        Tags = @("codaamok")
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/codaamok/codaamok/blob/master/LICENSE'

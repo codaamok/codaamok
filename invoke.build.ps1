@@ -17,7 +17,7 @@ param (
 )
 
 # Synopsis: Initiate the entire build process
-task . Clean, GetPSGalleryVersionNumber, GetVersionToBuild, GetFunctionsToExport, CreateRootModule, CopyFormatFiles, CopyLicense, CreateProcessScript, CopyAboutHelp, CopyModuleManifest, UpdateModuleManifest, CreateReleaseAsset, UpdateDocs
+task . Clean, GetPSGalleryVersionNumber, GetManifestVersionNumber, GetVersionToBuild, GetFunctionsToExport, CreateRootModule, CopyFormatFiles, CopyLicense, CreateProcessScript, CopyAboutHelp, CopyModuleManifest, UpdateModuleManifest, CreateReleaseAsset, UpdateDocs
 
 # Synopsis: Empty the contents of the build and release directories. If not exist, create them.
 task Clean {
@@ -60,6 +60,7 @@ task GetPSGalleryVersionNumber {
 # Synopsis: Get current version number of module in the manifest file
 task GetManifestVersionNumber {
     $Script:ModuleManifest = Import-PowerShellDataFile -Path $BuildRoot\$Script:ModuleName\$Script:ModuleName.psd1
+    Write-Output ("Module manifest verison: {0}" -f $Script:ModuleManifest.ModuleVersion)
 }
 
 # Synopsis: Determine version number to build blish with by evaluating versions in PowerShell Gallery and in the module manifest
@@ -75,13 +76,9 @@ task GetVersionToBuild {
             $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $Date, $CurrentVersion.Build+1)
         }
         elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest.ModuleVersion) {
-            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.ModuleVersion)
-            Write-Output ("Latest release version from PowerShell gallery: {0}" -f $Script:PSGalleryModuleInfo.Version)
             throw "Can not build with unmatching module version numbers in the PowerShell Gallery and module manifest"
         }
         else {
-            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.ModuleVersion)
-            Write-Output ("Latest release version from PowerShell gallery: {0}" -f $Script:PSGalleryModuleInfo.Version)
             throw "Can not determine next version number"
         }
     

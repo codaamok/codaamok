@@ -1,5 +1,14 @@
 ### Hi there 👋
 
+- 🔭 I’m currently working on [PSCMContentMgmt](https://github.com/codaamok/PSCMContentMgmt)
+- 🌱 I’m currently learning Github Actions and Pester.
+- 👯 I’m looking to collaborate on [AutomatedLab](https://github.com/AutomatedLab/AutomatedLab)
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
+- 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
+- 😄 Pronouns: he/him
+- ⚡ Fun fact: 
+
 <!--
 **codaamok/codaamok** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 

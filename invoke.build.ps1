@@ -74,7 +74,7 @@ task GetVersionToBuild {
             $CurrentVersion        = [System.Version]$Script:PSGalleryModuleInfo.Version
             $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $Date, $CurrentVersion.Build+1)
         }
-        elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest) {
+        elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest.Version) {
             throw "Can not build with unmatching module version numbers in the PowerShell Gallery and module manifest"
         }
         else {

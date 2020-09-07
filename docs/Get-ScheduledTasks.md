@@ -36,23 +36,20 @@ When we fall back to SchTasks, we add empty properties to match the COM object o
 ### EXAMPLE 1
 ```
 #Get scheduled tasks from the root folder of server1 and c-is-ts-91
-```
-
 Get-ScheduledTasks server1, c-is-ts-91
+```
 
 ### EXAMPLE 2
 ```
 #Get scheduled tasks from all folders on server1, not in a Microsoft folder
+Get-ScheduledTasks server1 -recurse -Exclude "\\Microsoft\\"
 ```
-
-Get-ScheduledTasks server1 -recurse -Exclude "\\\\Microsoft\\\\"
 
 ### EXAMPLE 3
 ```
 #Get scheduled tasks from all folders on server1, not in a Microsoft folder, and export in XML format (can be used to import scheduled tasks)
+Get-ScheduledTasks server1 -recurse -Exclude "\\Microsoft\\" -path 'D:\Scheduled Tasks'
 ```
-
-Get-ScheduledTasks server1 -recurse -Exclude "\\\\Microsoft\\\\" -path 'D:\Scheduled Tasks'
 
 ## PARAMETERS
 

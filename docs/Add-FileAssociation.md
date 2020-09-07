@@ -25,23 +25,21 @@ Define a program to open a file extension
 ### EXAMPLE 1
 ```
 $HT = @{
-```
-
-Extension = '.txt'
+    Extension = '.txt'
     TargetExecutable = "C:\Program Files\Notepad++\notepad++.exe"
 }
 Add-FileAssociation @HT
+```
 
 ### EXAMPLE 2
 ```
 $HT = @{
-```
-
-Extension = '.xml'
+    Extension = '.xml'
     TargetExecutable = "C:\Program Files\Microsoft VS Code\Code.exe"
     FtypeName = 'vscode'
 }
 Add-FileAssociation @HT
+```
 
 ## PARAMETERS
 

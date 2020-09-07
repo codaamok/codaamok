@@ -1,9 +1,9 @@
 ### Hi there 👋
 
 - 🔭 I’m currently working on [PSCMContentMgmt](https://github.com/codaamok/PSCMContentMgmt)
-- 🌱 I’m currently learning Github Actions and Pester.
+- 🌱 I’m currently learning Github Actions and Pester
 - 👯 I’m looking to collaborate on [AutomatedLab](https://github.com/AutomatedLab/AutomatedLab)
-- 🤔 I’m looking for help with ...
+- 🤔 I’m looking for help with CI/CD methods
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
 - 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
 - 😄 Pronouns: he/him

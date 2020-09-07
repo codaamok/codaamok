@@ -70,15 +70,15 @@ task GetVersionToBuild {
         if ($Script:PSGalleryModuleInfo.Version -eq "0.0") {
             $Script:VersionToBuild = $Script:VersionToBuild = [System.Version]::New(1, $Date, 0)
         }
-        elseif ($Script:PSGalleryModuleInfo.Version -eq $Script:ModuleManifest.Version) {
+        elseif ($Script:PSGalleryModuleInfo.Version -eq $Script:ModuleManifest.ModuleVersion) {
             $CurrentVersion        = [System.Version]$Script:PSGalleryModuleInfo.Version
             $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $Date, $CurrentVersion.Build+1)
         }
-        elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest.Version) {
+        elseif ($Script:PSGalleryModuleInfo.Version -ne $Script:ModuleManifest.ModuleVersion) {
             throw "Can not build with unmatching module version numbers in the PowerShell Gallery and module manifest"
         }
         else {
-            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.Version)
+            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.ModuleVersion)
             Write-Output ("Latest release version from PowerShell gallery: {0}" -f $Script:PSGalleryModuleInfo.Version)
             throw "Can not determine next version number"
         }
@@ -111,11 +111,11 @@ task GetVersionToBuild {
     }
     else {
         if ($Script:PSGalleryModuleInfo.Version -eq "0.0" -Or $Script:PSGalleryModuleInfo.Version -eq $Script:ModuleManifest.ModuleVersion) {
-            $CurrentVersion        = [System.Version]$Script:ModuleManifest.Version
+            $CurrentVersion        = [System.Version]$Script:ModuleManifest.ModuleVersion
             $Script:VersionToBuild = [System.Version]::New($CurrentVersion.Major, $CurrentVersion.Minor, $CurrentVersion.Build + 1)
         }
         else {
-            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.Version)
+            Write-Output ("Latest release version from module manifest: {0}" -f $Script:ModuleManifest.ModuleVersion)
             Write-Output ("Latest release version from PowerShell gallery: {0}" -f $Script:PSGalleryModuleInfo.Version)
             throw "Can not determine next version number"
         }

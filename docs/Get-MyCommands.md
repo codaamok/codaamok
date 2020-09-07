@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-MyCommands [[-Profile] <String>]
+Get-MyCommands [[-ProfileFile] <String>]
 ```
 
 ## DESCRIPTION
@@ -30,8 +30,8 @@ PS C:\> {{ Add example code here }}
 
 ## PARAMETERS
 
-### -Profile
-{{ Fill Profile Description }}
+### -ProfileFile
+{{ Fill ProfileFile Description }}
 
 ```yaml
 Type: String

@@ -13,7 +13,7 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Get-OS [-ComputerName] <String[]> [[-Credential] <PSCredential>] [<CommonParameters>]
+Get-OS [-ComputerName] <String[]> [[-Credential] <PSCredential>] [-DCOMAuthentication] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -55,6 +55,21 @@ Aliases:
 
 Required: False
 Position: 1
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DCOMAuthentication
+{{ Fill DCOMAuthentication Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False

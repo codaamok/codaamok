@@ -1,9 +1,8 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on [PSCMContentMgmt](https://github.com/codaamok/PSCMContentMgmt)
-- 🌱 I’m currently learning Github Actions and Pester
-- 👯 I’m looking to collaborate on [AutomatedLab](https://github.com/AutomatedLab/AutomatedLab)
-- 🤔 I’m looking for help with CI/CD methods
+- 🔭 I’m currently working on [PSShlink](https://github.com/codaamok/PSShlink)
+- 🌱 I’m currently learning Azure Functions
+- 🤔 I’m looking for help with learning more about Azure Functions, C#, Azure Pipelines and Pester
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
 - 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
 - 😄 Pronouns: he/him

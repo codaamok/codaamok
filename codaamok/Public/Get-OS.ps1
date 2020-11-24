@@ -1,7 +1,7 @@
 function Get-OS {
     Param (
         [Parameter(Mandatory)]
-        [String]$ComputerName,
+        [String[]]$ComputerName,
         [Parameter()]
         [PSCredential]$Credential,
         [Parameter()]

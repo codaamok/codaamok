@@ -126,7 +126,9 @@ task GetVersionToBuild {
     }
 
     Write-Output ("Version to build: {0}" -f $Script:VersionToBuild)
-    Write-Output ("VersionToBuild={0}" -f $Script:VersionToBuild) | Add-Content -Path $env:GITHUB_ENV 
+    if ($NewRelease.IsPresent) {
+        Write-Output ("VersionToBuild={0}" -f $Script:VersionToBuild) | Add-Content -Path $env:GITHUB_ENV 
+    }
 }
 
 # Synopsis: Gather all exported functions to populate manifest with

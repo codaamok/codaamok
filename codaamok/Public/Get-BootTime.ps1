@@ -10,7 +10,6 @@ Function Get-BootTime {
 
     $GetCimInstanceSplat = @{
         ClassName   = "Win32_OperatingSystem"
-        ErrorAction = "Stop"
     }
 
     if ($PSBoundParameters.ContainsKey("ComputerName")) {

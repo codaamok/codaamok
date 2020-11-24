@@ -10,7 +10,6 @@ function Get-OS {
 
     $GetCimInstanceSplat = @{
         Query = "Select Caption from Win32_OperatingSystem"
-        CimSession = $Session
     }
 
     if ($PSBoundParameters.ContainsKey("ComputerName")) {
@@ -37,5 +36,5 @@ function Get-OS {
 
     Get-CimInstance @getCimInstanceSplat | Select-Object -ExpandProperty Caption
 
-    Remove-CimSession $Session
+    if ($Session) { Remove-CimSession $Session }
 }

@@ -1,12 +1,12 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on [PSShlink](https://github.com/codaamok/PSShlink)
-- 🌱 I’m currently learning Azure Functions
-- 🤔 I’m looking for help with learning more about Azure Functions, C#, Azure Pipelines and Pester
+- 🔭 I’m currently working on nothing at the moment!
+- 🌱 I’m currently learning C#
+- 🤔 I’m looking for help with learning more about C# and Pester
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
 - 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
 - 😄 Pronouns: he/him
-- ⚡ Fun fact: 
+- ⚡ Fun fact: I use the [Moonlander](https://www.zsa.io/moonlander/) keyboard with Gazzew U4T switches, they're thocky!
 
 <!--
 **codaamok/codaamok** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

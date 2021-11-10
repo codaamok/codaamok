@@ -36,7 +36,7 @@ task InstallDependencies {
     if ($Script:ModuleName -ne "codaamok.build") {
         $Module += "codaamok.build"
     }
-    Install-BuildModules -Module $Modules
+    Install-Module -Name $Modules -Scope CurrentUser
 }
 
 # Synopsis: Set build platform specific environment variables

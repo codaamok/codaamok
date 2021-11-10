@@ -34,7 +34,7 @@ task . ImportBuildModule,
 task InstallDependencies {
     $Modules = "PlatyPS","ChangelogManagement"
     if ($Script:ModuleName -ne "codaamok.build") {
-        $Module += "codaamok.build"
+        $Modules += "codaamok.build"
     }
     Install-Module -Name $Modules -Scope CurrentUser
 }

@@ -114,13 +114,15 @@ else {
     Update-ProfileModule
 }
 
-if ((Get-Module "PSReadline").version -lt [System.Version]"2.2.0" -And $PSVersionTable.PSVersion -ge [System.Version]"7.0") {
-    Install-Module "PSReadline" -AllowPrerelease -Force
-    Write-Host "PSReadline updated, please reload"
-}
-else {
-    Set-PSReadLineOption -PredictionSource History
-    Set-PSReadLineOption -PredictionViewStyle ListView
+if ($PSVersionTable.PSVersion -ge [System.Version]"7.0") {
+    if ((Get-Module "PSReadline").version -lt [System.Version]"2.2.0") {
+        Install-Module "PSReadline" -AllowPrerelease -Force
+        Write-Host "PSReadline updated, please reload"
+    }
+    else {
+        Set-PSReadLineOption -PredictionSource History
+        Set-PSReadLineOption -PredictionViewStyle ListView
+    }    
 }
 
 $script:MyOS = Get-MyOS

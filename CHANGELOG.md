@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - Fixed PSReadline module check in profile.ps1
+- Fixed PSReadline module check in profile.ps1
 
 ## [2.0.2] - 2021-11-10
 ### Changed

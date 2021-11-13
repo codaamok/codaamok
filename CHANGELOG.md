@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
+- Updated Update-Profile function in profile.ps1 to use this module's profile.ps1 (actually did it this time)
 - Updated Update-Profile function in profile.ps1 to use this module's profile.ps1
 
 ## [3.0.2] - 2021-11-13

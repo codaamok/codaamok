@@ -42,14 +42,10 @@ function prompt {
 }
 
 function Update-Profile {
-    [CmdletBinding()]
-    param (
-        [Parameter()]
-        [String]$Url = "https://acook.io/profile"
-    )
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    Invoke-WebRequest $Url -OutFile $profile.CurrentUserAllHosts -PassThru -ErrorAction Stop
-    Invoke-Expression -Command ('. "{0}"' -f $profile.CurrentUserAllHosts)
+    $Module = Get-Module codaamok 
+    Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Confirm
+    '. $profile.CurrentUserAllHosts' | clip
+    Write-Host "Paste your clipboard"
 }
 
 function Update-ProfileModule {

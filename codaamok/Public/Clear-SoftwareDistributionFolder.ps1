@@ -1,4 +1,4 @@
-Function Shamefully-ResetBITS {
+Function Clear-SoftwareDistributionFolder {
     Param( 
         [Parameter()]
         [String[]]$ComputerName,
@@ -11,15 +11,20 @@ Function Shamefully-ResetBITS {
                 ComputerName = $env:COMPUTERNAME
             }
             try {
-                Get-Service -Name "bits" -ErrorAction "Stop" | Stop-Service -Force -ErrorAction "Stop" -WarningAction "SilentlyContinue"
+                Get-Service -Name "bits","Windows Update" -ErrorAction "Stop" | Stop-Service -Force -ErrorAction "Stop"
                 Start-Process "ipconfig" -ArgumentList "/flushdns" -ErrorAction "Stop"
+
                 $path = "{0}\Microsoft\Network\Downloader" -f $env:ProgramData
                 Get-ChildItem -Path $path | ForEach-Object {
                     if ($_.FullName -notmatch "\.log$|\.old$") {
                         Move-Item -LiteralPath $_.FullName -Destination ($_.FullName + ".old") -Force -ErrorAction "Stop"
                     }
                 }
-                Get-Service -Name "bits" -ErrorAction "Stop" | Start-Service -ErrorAction "Stop"
+
+                $path = "{0}\SoftwareDistribution" -f $env:windir
+                Move-Item -LiteralPath $path -Destination ("{0}.old" -f $path) -Force -ErrorAction "Stop"
+
+                Get-Service -Name "bits","Windows Update" -ErrorAction "Stop" | Start-Service -ErrorAction "Stop"
                 $Result["Result"] = "Success"
             }
             catch {
@@ -45,5 +50,6 @@ Function Shamefully-ResetBITS {
         Start-Sleep -Seconds 2
     }
     Receive-Job -Job $Jobs
-    Remove-Job -Job $Jobs   
+    Remove-Job -Job $Jobs 
+    
 }

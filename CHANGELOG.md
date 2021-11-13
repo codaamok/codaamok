@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.0.1] - 2021-11-13
 ### Changed
 - Renamed some functions to use approved verbs
 
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update-Profile now updates with local profile.ps1 from module, not internet
 
-[Unreleased]: https://github.com/codaamok/codaamok/compare/2.0.3..HEAD
+[Unreleased]: https://github.com/codaamok/codaamok/compare/3.0.1..HEAD
+[3.0.1]: https://github.com/codaamok/codaamok/compare/2.0.3..3.0.1
 [2.0.3]: https://github.com/codaamok/codaamok/compare/2.0.2..2.0.3
 [2.0.2]: https://github.com/codaamok/codaamok/tree/2.0.2

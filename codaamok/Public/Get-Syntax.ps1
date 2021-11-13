@@ -9,7 +9,7 @@ function Get-Syntax {
     #>
 
     [CmdletBinding()]
-    [Alias('synt', 'syntax')]
+    [Alias('syntax')]
     param (
         # The name of a command.
         [Parameter(Mandatory, Position = 1, ValueFromPipelineByPropertyName, ParameterSetName = 'ByName')]

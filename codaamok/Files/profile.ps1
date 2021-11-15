@@ -42,8 +42,8 @@ function prompt {
 }
 
 function Update-Profile {
-    $Module = Get-Module codaamok 
-    Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Confirm
+    $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
+    Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Confirm -ErrorAction "Stop"
     '. $profile.CurrentUserAllHosts' | clip
     Write-Host "Paste your clipboard"
 }
@@ -112,8 +112,13 @@ else {
 
 if ($PSVersionTable.PSVersion -ge [System.Version]"7.0") {
     if ((Get-Module "PSReadline").version -lt [System.Version]"2.2.0") {
-        Install-Module "PSReadline" -AllowPrerelease -Force
-        Write-Host "PSReadline updated, please reload"
+        try {
+            Install-Module "PSReadline" -AllowPrerelease -Force -ErrorAction "Stop"
+            Write-Host "PSReadline updated, please reload"
+        }
+        catch {
+            Write-Error $_
+        }
     }
     else {
         Set-PSReadLineOption -PredictionSource History

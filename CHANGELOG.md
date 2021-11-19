@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Test run for pipeline troubleshooting
 
+## [3.0.8] - 2021-11-18
+### Removed
+- l alias from profile.ps1
+
 ## [3.0.6] - 2021-11-15
 ### Fixed
 - Better error handling in `Update-Profile`
@@ -38,7 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Update-Profile now updates with local profile.ps1 from module, not internet
 
-[Unreleased]: https://github.com/codaamok/codaamok/compare/3.0.6..HEAD
+[Unreleased]: https://github.com/codaamok/codaamok/compare/3.0.8..HEAD
+[3.0.8]: https://github.com/codaamok/codaamok/compare/3.0.6..3.0.8
 [3.0.6]: https://github.com/codaamok/codaamok/compare/3.0.5..3.0.6
 [3.0.5]: https://github.com/codaamok/codaamok/compare/3.0.3..3.0.5
 [3.0.3]: https://github.com/codaamok/codaamok/compare/3.0.2..3.0.3

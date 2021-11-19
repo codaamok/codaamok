@@ -12,7 +12,7 @@
 RootModule = 'codaamok.psm1'
 
 # Version number of this module.
-ModuleVersion = '3.0.9'
+ModuleVersion = '3.0.10'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -121,7 +121,8 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'None'
+        ReleaseNotes = '# Added
+- Test run for pipeline troubleshooting'
 
         # Prerelease string of this module
         # Prerelease = ''

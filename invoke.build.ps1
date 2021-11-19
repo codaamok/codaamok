@@ -200,7 +200,13 @@ task UpdateDocs -If ($NewRelease -Or $UpdateDocs) {
 
 # Synopsis: Update the project's repository with files updated by the pipeline e.g. module manifest
 task UpdateProjectRepo -If ($NewRelease) {
+    Write-Output "Content of releasenotes.txt"
+    Write-Output (Get-Content $BuildRoot\release\releasenotes.txt)
+
     $ManifestData = Import-PowerShellDataFile -Path $Script:ManifestFile
+
+    Write-Output "Contents of built manifest release notes"
+    Write-Output $ManifestData.PrivateData.PSData.ReleaseNotes
 
     # Instead of copying the manifest from the .\build directory, update it in place
     # This enables me to keep FunctionsToExport = '*' for development. Therefore instead only update the important bits e.g. version and release notes    

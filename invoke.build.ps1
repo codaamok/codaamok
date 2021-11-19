@@ -21,8 +21,8 @@ param (
 # Synopsis: Initiate the build process
 task . ImportBuildModule,
     InitaliseBuildDirectory,
-    UpdateChangeLog,
     CopyChangeLog,
+    UpdateChangeLog,
     CreateRootModule,
     CreateProcessScript,
     UpdateModuleManifest,
@@ -111,6 +111,13 @@ task GetVersionToBuild {
 }
 #>
 
+# Synopsis: Get change log data, copy it to the build directory, and create releasenotes.txt
+task CopyChangeLog {
+    Copy-Item -Path $BuildRoot\CHANGELOG.md -Destination $BuildRoot\build\$Script:ModuleName\CHANGELOG.md
+    $Script:ChangeLogData = Get-ChangeLogData -Path $BuildRoot\CHANGELOG.md
+    Export-UnreleasedNotes -Path $BuildRoot\release\releasenotes.txt -ChangeLogData $Script:ChangeLogData -NewRelease $Script:NewRelease
+}
+
 # Synopsis: Update CHANGELOG.md (if building a new release with -NewRelease)
 task UpdateChangeLog -If ($Script:NewRelease) {
     $LinkPattern   = @{
@@ -119,14 +126,7 @@ task UpdateChangeLog -If ($Script:NewRelease) {
         Unreleased    = "https://github.com/{0}/{1}/compare/{{CUR}}..HEAD" -f $Script:Author, $Script:ModuleName
     }
 
-    Update-Changelog -Path $BuildRoot\CHANGELOG.md -ReleaseVersion $Script:Version -LinkMode Automatic -LinkPattern $LinkPattern
-}
-
-# Synopsis: Get change log data, copy it to the build directory, and create releasenotes.txt
-task CopyChangeLog {
-    Copy-Item -Path $BuildRoot\CHANGELOG.md -Destination $BuildRoot\build\$Script:ModuleName\CHANGELOG.md
-    $Script:ChangeLogData = Get-ChangeLogData -Path $BuildRoot\CHANGELOG.md
-    Export-UnreleasedNotes -Path $BuildRoot\release\releasenotes.txt -ChangeLogData $Script:ChangeLogData -NewRelease $Script:NewRelease
+    Update-Changelog -Path $BuildRoot\build\$Script:ModuleName\CHANGELOG.md -ReleaseVersion $Script:Version -LinkMode Automatic -LinkPattern $LinkPattern
 }
 
 # Synopsis: Creates a single .psm1 file of all private and public functions of the to-be-built module
@@ -200,13 +200,9 @@ task UpdateDocs -If ($NewRelease -Or $UpdateDocs) {
 
 # Synopsis: Update the project's repository with files updated by the pipeline e.g. module manifest
 task UpdateProjectRepo -If ($NewRelease) {
-    Write-Output "Content of releasenotes.txt"
-    Write-Output (Get-Content $BuildRoot\release\releasenotes.txt)
+    Copy-Item -Path $BuildRoot\build\$Script:ModuleName\CHANGELOG.md -Destination $BuildRoot\CHANGELOG.md
 
     $ManifestData = Import-PowerShellDataFile -Path $Script:ManifestFile
-
-    Write-Output "Contents of built manifest release notes"
-    Write-Output $ManifestData.PrivateData.PSData.ReleaseNotes
 
     # Instead of copying the manifest from the .\build directory, update it in place
     # This enables me to keep FunctionsToExport = '*' for development. Therefore instead only update the important bits e.g. version and release notes    
@@ -217,5 +213,5 @@ task UpdateProjectRepo -If ($NewRelease) {
     }
     Update-ModuleManifest @UpdateModuleManifestSplat
     
-    $null = Test-ModuleManifest -Path $Script:ManifestFile
+    $null = Test-ModuleManifest -Path ("{0}\{1}\{1}.psd1" -f $BuildRoot, $Script:ModuleName)
 }

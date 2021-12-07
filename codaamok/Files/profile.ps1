@@ -111,13 +111,12 @@ else {
 }
 
 if ($PSVersionTable.PSVersion -ge [System.Version]"7.0") {
-    $Modules = Get-Module "PSReadline" -ListAvailable
-    if ($Modules.Version -lt [System.Version]"2.2.0") {
-        "Missing PSReadline 2.2.0 or newer, will not set options"
-    }
-    else {
+    if ((Get-Module "PSReadline" -ListAvailable).Version -ge [System.Version]"2.2.0") {
         Set-PSReadLineOption -PredictionSource History
         Set-PSReadLineOption -PredictionViewStyle ListView
+    }
+    else {
+        "Missing PSReadline 2.2.0 or newer, will not set options"
     }
 }
 

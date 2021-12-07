@@ -12,7 +12,7 @@
 RootModule = 'codaamok.psm1'
 
 # Version number of this module.
-ModuleVersion = '3.0.14'
+ModuleVersion = '3.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -121,8 +121,10 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = '# Changed
-- No longer force install PSReadline, warn instead'
+        ReleaseNotes = '# Added
+- New function Install-Profile
+# Fixed
+- Improve detection of PSReadline >= 2.2.0 in profile.ps1'
 
         # Prerelease string of this module
         # Prerelease = ''

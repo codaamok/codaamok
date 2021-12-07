@@ -111,19 +111,14 @@ else {
 }
 
 if ($PSVersionTable.PSVersion -ge [System.Version]"7.0") {
-    if ((Get-Module "PSReadline").version -lt [System.Version]"2.2.0") {
-        try {
-            Install-Module "PSReadline" -AllowPrerelease -Force -ErrorAction "Stop"
-            Write-Host "PSReadline updated, please reload"
-        }
-        catch {
-            Write-Error $_
-        }
+    $Modules = Get-Module "PSReadline" -ListAvailable
+    if ($Modules.Version -lt [System.Version]"2.2.0") {
+        "Missing PSReadline 2.2.0 or newer, will not set options"
     }
     else {
         Set-PSReadLineOption -PredictionSource History
         Set-PSReadLineOption -PredictionViewStyle ListView
-    }    
+    }
 }
 
 $script:MyOS = Get-MyOS

@@ -12,7 +12,7 @@
 RootModule = 'codaamok.psm1'
 
 # Version number of this module.
-ModuleVersion = '3.1.2'
+ModuleVersion = '3.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -121,8 +121,8 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = '# Fixed
-- Fixed Install-Profile'
+        ReleaseNotes = '# Changed
+- Updated profile.ps1 to change $env:PSModulePath to not use OneDrive folders'
 
         # Prerelease string of this module
         # Prerelease = ''

@@ -100,6 +100,23 @@ function Get-Username {
     }
 }
 
+# Do not use OneDrive\Documents folder for PSModulePath
+
+$env:PSModulePath = ($env:PSModulePath -split ';' | ForEach-Object {
+    if ($_ -notmatch 'OneDrive') { $_ }
+    else { 
+        $_ -replace [Regex]::Escape($_), $(
+            if ($PSVersionTable.PSVersion -ge [System.Version]"7.0") {
+                if ($IsLinux) { "{0}/.local/share/powershell/Modules" -f $home }
+                else { "{0}\Documents\PowerShell\Modules\" -f $home }
+            }
+            else {
+                "{0}\Documents\WindowsPowerShell\Modules\" -f $home
+            }
+        )
+    }
+}) -join ';'
+
 if (-not (Get-Module "codaamok" -ListAvailable)) {
     $answer = Read-Host -Prompt "Profile module not installed, install? (Y)"
     if ($answer -eq "Y" -or $answer -eq "") {

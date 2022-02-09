@@ -152,4 +152,4 @@ if (Test-Path $script:machineprofile) {
     . $script:machineprofile
 }
 
-Set-Alias -Name "eps" -Value "Enter-PSSession"
+Set-Alias -Name "ctj" -Value "ConvertTo-Json"

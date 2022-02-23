@@ -1,12 +1,12 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on nothing at the moment!
-- 🌱 I’m currently learning C#
+- 🔭 I’m currently working on PSShlink (writing tests)!
+- 🌱 I’m currently learning Pester
 - 🤔 I’m looking for help with learning more about C# and Pester
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
 - 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
 - 😄 Pronouns: he/him
-- ⚡ Fun fact: I use the [Kyria](https://splitkb.com/products/kyria-pcb-kit) keyboard with Gazzew U4T switches, they're thocky!
+- ⚡ Fun fact: I have a Beagle named Alfie - send help 🆘
 
 <!--
 **codaamok/codaamok** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

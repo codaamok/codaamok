@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `profile.ps1` no longer checks for PS7 to set PSReadline options as listview and history is now supported on 5.1 and 7+
 
 ## [4.0.0] - 2022-02-09
 ### Added

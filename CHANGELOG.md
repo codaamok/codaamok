@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `Update-ProfileModule` also copies `profile.ps1` if module was updated
+
+### Changed
+- `Update-Profile` no longer prompts when clobbering
+- Removed prompt from `profile.ps1`
+- `profile.ps1` no longer changes env var `PSModulePath`
+
+### Fixed
+- `Update-ProfileModule` never actually worked, doh
 
 ## [4.1.0] - 2022-02-24
 ### Changed

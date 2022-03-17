@@ -1,25 +1,44 @@
 function Update-Profile {
-    $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
-    Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
-    $OhMyPoshTheme = Copy-Item -Path "$($Module.ModuleBase)\M365Princess.omp.json" -Destination $HOME -Force -PassThru -ErrorAction "Stop"
-    $profile | Add-Member -MemberType "NoteProperty" -Name "OhMyPoshTheme" -Value $OhMyPoshTheme.FullName
-    '. $profile.CurrentUserAllHosts' | clip
-    Write-Host "Paste your clipboard"
+    param (
+        [Switch]$AsJob
+    )
+
+    $ScriptBlock = {
+        $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
+        Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
+        Copy-Item -Path "$($Module.ModuleBase)\*.omp.json" -Destination $HOME -Force -ErrorAction "Stop"
+    }
+
+    if ($AsJob) {
+        $null = Start-Job -ScriptBlock $ScriptBlock -Name "UpdateProfile"
+    }
+    else {
+        & $ScriptBlock
+        '. $profile.CurrentUserAllHosts' | Set-ClipBoard
+        Write-Host "Paste your clipboard"
+    }
 }
 
 function Update-ProfileModule {
+    param (
+        [Switch]$AsJob
+    )
+
     $ScriptBlock = {
         $Installed = Get-Module -Name "codaamok" -ListAvailable -ErrorAction "Stop"
         $Available = Find-Module -Name "codaamok" -ErrorAction "Stop"
 
         if ($Installed[0].Version -ne $Available.Version) {
-            $Module = Update-Module -Name "codaamok" -Force -PassThru -ErrorAction "Stop"
-            Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
-            Copy-Item -Path "$($Module.ModuleBase)\M365Princess.omp.json" -Destination $HOME -Force -ErrorAction "Stop"
+            Update-Module -Name "codaamok" -Force -ErrorAction "Stop"
         }
     }
 
-    $null = Start-Job -ScriptBlock $ScriptBlock -Name "UpdateProfileModule"
+    if ($AsJob) {
+        $null = Start-Job -ScriptBlock $ScriptBlock -Name "UpdateProfileModule"
+    }
+    else {
+        & $ScriptBlock
+    }
 }
 
 function Search-History {
@@ -40,6 +59,9 @@ function Get-MyOS {
                 }
                 $IsWindows {
                     "Windows"
+                }
+                $IsMacOS {
+                    "MacOS"
                 }
             }
         }
@@ -68,10 +90,10 @@ if (-not (Get-Module "codaamok" -ListAvailable)) {
     }
 }
 else {
-    $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
-    oh-my-posh prompt init pwsh --config 'C:\Users\AdamCook\M365Princess.omp.json' | Invoke-Expression
-    Update-ProfileModule
+    Update-ProfileModule -AsJob
 }
+
+Update-Profile -AsJob
 
 if ((Get-Module "PSReadline" -ListAvailable).Version -ge [System.Version]"2.2.0") {
     Set-PSReadLineOption -PredictionSource History
@@ -83,8 +105,7 @@ else {
 
 $script:MyOS = Get-MyOS
 $script:MyUsername = Get-Username -OS $script:MyOS
-$script:mydocs = [Environment]::GetFolderPath("MyDocuments")
-$script:machineprofile = "{0}\profile-machine.ps1" -f $script:mydocs
+$script:MachineProfile = "{0}\profile-machine.ps1" -f $HOME
 $script:WorkApps = @(
     "Front"
     "Teams"
@@ -92,12 +113,18 @@ $script:WorkApps = @(
     "outlook"
 )
 
-if (Test-Path $script:machineprofile) {
-    . $script:machineprofile
+if (Test-Path $script:MachineProfile) {
+    . $script:MachineProfile
 }
 
 if (Get-Command "oh-my-posh") {
-    oh-my-posh prompt init pwsh --config $profile.OhMyPoshTheme | Invoke-Expression
+    $OMPThemeJson = Join-Path -Path $HOME -ChildPath 'theme.omp.json'
+    if (Test-Path $OMPThemeJson) {
+        oh-my-posh prompt init pwsh --config $OMPThemeJson | Invoke-Expression
+    }
+    else {
+        "Did not find 'theme.omp.json' in home directory"
+    }
 }
 else {
     "oh-my-posh is not installed"

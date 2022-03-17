@@ -12,7 +12,7 @@
 RootModule = 'codaamok.psm1'
 
 # Version number of this module.
-ModuleVersion = '5.0.0'
+ModuleVersion = '5.0.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -122,13 +122,9 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = '# Added
-- Update-ProfileModule also copies profile.ps1 if module was updated
-# Changed
-- Update-Profile no longer prompts when clobbering
-- Removed prompt from profile.ps1
-- profile.ps1 no longer changes env var PSModulePath
+- Improvements for handling profile and profile module async updates
 # Fixed
-- Update-ProfileModule never actually worked, doh'
+- Fixed incorrect logic when trying to set OMP theme'
 
         # Prerelease string of this module
         # Prerelease = ''

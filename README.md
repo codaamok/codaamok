@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on PSShlink (writing tests)!
+- 🔭 I’m currently working on PSBusinessTime!
 - 🌱 I’m currently learning Pester, and finding out the best way to use classes within PowerShell
 - 🤔 I’m looking for help with learning more about C# and Pester
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)

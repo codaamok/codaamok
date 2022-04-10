@@ -5,7 +5,7 @@ function Update-Profile {
 
     $ScriptBlock = {
         $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
-        Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
+        Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $using:profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
         Copy-Item -Path "$($Module.ModuleBase)\*.omp.json" -Destination $HOME -Force -ErrorAction "Stop"
     }
 

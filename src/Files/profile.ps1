@@ -4,16 +4,19 @@ function Update-Profile {
     )
 
     $ScriptBlock = {
+        param(
+            $ProfilePath
+        )
         $Module = Import-Module codaamok -PassThru -ErrorAction "Stop"
-        Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $using:profile.CurrentUserAllHosts -Force -ErrorAction "Stop"
+        Copy-Item -Path "$($Module.ModuleBase)\profile.ps1" -Destination $ProfilePath -Force -ErrorAction "Stop"
         Copy-Item -Path "$($Module.ModuleBase)\*.omp.json" -Destination $HOME -Force -ErrorAction "Stop"
     }
 
     if ($AsJob) {
-        $null = Start-Job -ScriptBlock $ScriptBlock -Name "UpdateProfile"
+        $null = Start-Job -ScriptBlock $ScriptBlock -Name "UpdateProfile" -ArgumentList $profile.CurrentUserAllHosts
     }
     else {
-        & $ScriptBlock
+        & $ScriptBlock $profile.CurrentUserAllHosts
         '. $profile.CurrentUserAllHosts' | Set-ClipBoard
         Write-Host "Paste your clipboard"
     }

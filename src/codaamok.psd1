@@ -12,7 +12,7 @@
 RootModule = 'codaamok.psm1'
 
 # Version number of this module.
-ModuleVersion = '5.0.3'
+ModuleVersion = '5.0.4'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -122,7 +122,7 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = '# Fixed
-- Update-Profile with the -AsJob switch always copied profile.ps1 to the current working directory and not $profile.CurrentUserAllHosts'
+- I am an idiot sandwich'
 
         # Prerelease string of this module
         # Prerelease = ''

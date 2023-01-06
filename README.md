@@ -1,8 +1,8 @@
 ### Hi there 👋
 
-- 🔭 I’m currently working on PSBusinessTime!
-- 🌱 I’m currently learning Pester, and finding out the best way to use classes within PowerShell
-- 🤔 I’m looking for help with learning more about C# and Pester
+- 🔭 I’m currently working on nothing open-source related, but a few projects at work which consume time!
+- 🌱 I’m currently learning mongodb
+- 🤔 I’m looking for help with learning more about mongodb
 - 💬 Ask me about PowerShell, Azure, Linux, ConfigMgr (SCCM/MEMCM/MECM)
 - 📫 How to reach me: [Twitter](https://twitter.com/codaamok)
 - 😄 Pronouns: he/him
